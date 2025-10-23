@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 263.4 95.2% 66.1%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 95.2% 66.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes burn {
+    0%, 100% {
+      transform: scale(1) rotate(-1deg);
+      filter: blur(0) drop-shadow(0 0 1px #fbbf24) drop-shadow(0 0 2px #f59e0b) drop-shadow(0 0 5px #ef4444);
+    }
+    50% {
+      transform: scale(1.15) rotate(1deg);
+      filter: blur(0.5px) drop-shadow(0 0 2px #fde047) drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 10px #dc2626);
+    }
+  }
+
+  .animate-burn {
+    animation: burn 0.8s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      filter: drop-shadow(0 0 2px #fde047);
+    }
+    50% {
+      transform: scale(1.2) rotate(10deg);
+      filter: drop-shadow(0 0 5px #fde047) drop-shadow(0 0 10px #facc15);
+    }
+  }
+
+  .animate-shine {
+    animation: shine 1s ease-in-out infinite;
+  }
+
+  @keyframes gleam {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-gleam {
+    animation: gleam 1s ease-in-out infinite;
+  }
+
+  @keyframes bulb-glow {
+    0%, 100% {
+      color: #fde047; /* yellow-300 */
+      filter: drop-shadow(0 0 2px #fde047) drop-shadow(0 0 5px #facc15);
+    }
+    50% {
+      color: #fef08a; /* yellow-200 */
+      filter: drop-shadow(0 0 5px #fde047) drop-shadow(0 0 10px #facc15) drop-shadow(0 0 15px #f59e0b);
+    }
+  }
+
+  .animate-bulb-glow {
+      animation: bulb-glow 2s ease-in-out infinite;
+  }
+}

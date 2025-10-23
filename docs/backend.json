@@ -1,0 +1,400 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the Aexy Tutor application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user.",
+          "format": "uuid"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "tier": {
+          "type": "string",
+          "description": "Subscription tier of the user (FREE, STANDARD, PREMIUM).",
+          "format": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the user account was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email"
+      ]
+    },
+    "DailyUsage": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "DailyUsage",
+      "type": "object",
+      "description": "Tracks the daily usage of conversations for a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the daily usage record.",
+          "format": "uuid"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User. (Relationship: User 1:N DailyUsage)",
+          "format": "uuid"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date for which the usage is being tracked.",
+          "format": "date"
+        },
+        "conversationsCount": {
+          "type": "number",
+          "description": "Number of conversations started by the user on this date."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "date"
+      ]
+    },
+    "Subscription": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Subscription",
+      "type": "object",
+      "description": "Represents a user's subscription to a particular tier.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the subscription.",
+          "format": "uuid"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User. (Relationship: User 1:N Subscription)",
+          "format": "uuid"
+        },
+        "tier": {
+          "type": "string",
+          "description": "Subscription tier (FREE, STANDARD, PREMIUM)."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the subscription (active, inactive)."
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Timestamp indicating when the subscription started.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "Timestamp indicating when the subscription ends (nullable for ongoing subscriptions).",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "tier",
+        "startDate"
+      ]
+    },
+    "Conversation": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Conversation",
+      "type": "object",
+      "description": "Represents a conversation between a user and the AI tutor.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the conversation.",
+          "format": "uuid"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User. (Relationship: User 1:N Conversation)",
+          "format": "uuid"
+        },
+        "scenarioId": {
+          "type": "number",
+          "description": "Identifier for the scenario used in the conversation."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the conversation (active, ended)."
+        },
+        "startedAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the conversation started.",
+          "format": "date-time"
+        },
+        "endedAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the conversation ended.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "scenarioId",
+        "startedAt"
+      ]
+    },
+    "Message": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Message",
+      "type": "object",
+      "description": "Represents a message within a conversation.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the message.",
+          "format": "uuid"
+        },
+        "conversationId": {
+          "type": "string",
+          "description": "Reference to the Conversation. (Relationship: Conversation 1:N Message)",
+          "format": "uuid"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role of the message sender (user or ai)."
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the message."
+        },
+        "feedback": {
+          "type": "string",
+          "description": "Feedback on the message (grammar, pronunciation), stored as a JSON string.",
+          "format": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the message was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "conversationId",
+        "role",
+        "content",
+        "createdAt"
+      ]
+    },
+    "Scenario": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Scenario",
+      "type": "object",
+      "description": "Represents a specific learning scenario for conversations.",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Unique identifier for the scenario."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the scenario."
+        },
+        "difficulty": {
+          "type": "string",
+          "description": "Difficulty level of the scenario."
+        },
+        "duration": {
+          "type": "string",
+          "description": "Estimated duration of the scenario."
+        },
+        "isPremium": {
+          "type": "boolean",
+          "description": "Indicates if the scenario is only available for premium users."
+        },
+        "initialPrompt": {
+          "type": "string",
+          "description": "Initial prompt given to the user at the start of the scenario."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "difficulty",
+        "duration",
+        "isPremium",
+        "initialPrompt"
+      ]
+    },
+    "Login": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Login",
+      "type": "object",
+      "description": "Data entity for handling user login information.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the login record. References the User ID.",
+          "format": "uuid"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address used for login.",
+          "format": "email"
+        }
+      },
+      "required": [
+        "id",
+        "email"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles.  Path-based ownership is enforced.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/dailyUsage/{dailyUsageId}",
+        "definition": {
+          "entityName": "DailyUsage",
+          "schema": {
+            "$ref": "#/backend/entities/DailyUsage"
+          },
+          "description": "Tracks daily usage of conversations for a user. Includes denormalized 'userId' field for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "dailyUsageId",
+              "description": "Unique identifier for the daily usage record."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/subscriptions/{subscriptionId}",
+        "definition": {
+          "entityName": "Subscription",
+          "schema": {
+            "$ref": "#/backend/entities/Subscription"
+          },
+          "description": "Represents a user's subscription. Includes denormalized 'userId' field for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "subscriptionId",
+              "description": "Unique identifier for the subscription."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/conversations/{conversationId}",
+        "definition": {
+          "entityName": "Conversation",
+          "schema": {
+            "$ref": "#/backend/entities/Conversation"
+          },
+          "description": "Represents a conversation between a user and the AI tutor. Includes denormalized 'userId' field for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "conversationId",
+              "description": "Unique identifier for the conversation."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/conversations/{conversationId}/messages/{messageId}",
+        "definition": {
+          "entityName": "Message",
+          "schema": {
+            "$ref": "#/backend/entities/Message"
+          },
+          "description": "Represents a message within a conversation. Includes denormalized 'userId' field for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "conversationId",
+              "description": "Unique identifier for the conversation."
+            },
+            {
+              "name": "messageId",
+              "description": "Unique identifier for the message."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/scenarios/{scenarioId}",
+        "definition": {
+          "entityName": "Scenario",
+          "schema": {
+            "$ref": "#/backend/entities/Scenario"
+          },
+          "description": "Represents a specific learning scenario. Scenarios are globally accessible, but tier-based access is controlled by the `isPremium` flag.",
+          "params": [
+            {
+              "name": "scenarioId",
+              "description": "Unique identifier for the scenario."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/logins/{loginId}",
+        "definition": {
+          "entityName": "Login",
+          "schema": {
+            "$ref": "#/backend/entities/Login"
+          },
+          "description": "Stores user login information. The loginId corresponds to the userId.",
+          "params": [
+            {
+              "name": "loginId",
+              "description": "Unique identifier for the login record, which corresponds to the user ID."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure is designed to support the Aexy Tutor application, focusing on user authentication, conversation management, subscription tiers, and usage tracking. The structure prioritizes authorization independence through path-based ownership and denormalization, ensuring secure and scalable access control. Each collection is designed with a homogeneous security posture to simplify security rules and enhance debuggability.\n\nThe `/users/{userId}` collection stores user profiles. This structure creates clear ownership and simplifies security rules for user-specific data. Subcollections under each user document (e.g., `/users/{userId}/subscriptions`, `/users/{userId}/dailyUsage`, `/users/{userId}/conversations`) provide a hierarchical structure, further enforcing path-based ownership for related data. Each document inside the subcollections contains the `userId` field for authorization independence.\n\nThe `/scenarios` collection stores learning scenarios. These scenarios are globally accessible, but the `isPremium` field allows for tier-based access control within the application logic. Since scenarios are global, there is no need for user-specific subcollections.\n\nThis design achieves Authorization Independence by using path-based ownership for user-specific data. For example, a user's conversations are stored under `/users/{userId}/conversations/{conversationId}`, making it easy to write security rules that only allow the user with the matching `userId` to access that data. The structure supports the required QAPs by segregating data with different access needs into separate collections and subcollections.  Rules are not filters. This guarantees only authorized data is ever returned to the client."
+  }
+}

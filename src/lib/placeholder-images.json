@@ -1,0 +1,74 @@
+{
+  "placeholderImages": [
+    {
+      "id": "aexy-user-avatar-placeholder",
+      "description": "User Avatar Placeholder",
+      "imageUrl": "https://images.unsplash.com/photo-1733590555929-fe1f01df4a6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhbmltYXRlZCUyMHBlcnNvbnxlbnwwfHx8fDE3NjA3Nzk5MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated person",
+      "personality": "A friendly face, ready to learn."
+    },
+    {
+      "id": "aexy-anya-avatar",
+      "description": "AI Tutor Anya Sharma",
+      "imageUrl": "https://images.unsplash.com/photo-1653671689368-13b828d04421?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbmltYXRlZCUyMHRlYWNoZXJ8ZW58MHx8fHwxNzYwNzc5OTAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated teacher",
+      "personality": "A patient and insightful guide for your learning journey."
+    },
+    {
+      "id": "aexy-alex-avatar",
+      "description": "AI Tutor Alex, the waiter",
+      "imageUrl": "https://images.unsplash.com/photo-1741963347862-51f35201a4f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbmltYXRlZCUyMHdhaXRlcnxlbnwwfHx8fDE3NjA3Nzk5MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated waiter",
+      "personality": "A cheerful and efficient helper for everyday conversations."
+    },
+    {
+      "id": "aexy-david-avatar",
+      "description": "AI Tutor David Chen",
+      "imageUrl": "https://images.unsplash.com/photo-1733590555929-fe1f01df4a6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhbmltYXRlZCUyMGJ1c2luZXNzbWFufGVufDB8fHx8MTc2MDc3OTkwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated businessman",
+      "personality": "A sharp and strategic partner for professional scenarios."
+    },
+    {
+      "id": "avatar-1",
+      "description": "Elara",
+      "imageUrl": "https://images.unsplash.com/photo-1662485966925-8fda1fdd0f72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhbmltYXRlZCUyMHdvbWFufGVufDB8fHx8MTc2MTIxNDU1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated woman",
+      "personality": "A creative soul who loves to paint and dream."
+    },
+    {
+      "id": "avatar-2",
+      "description": "Kael",
+      "imageUrl": "https://images.unsplash.com/photo-1644833384541-b273dbb40caa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhbmltYXRlZCUyMG1hbnxlbnwwfHx8fDE3NjEyMTQ1NTZ8MA&ixlibrb-4.1.0&q=80&w=1080",
+      "imageHint": "animated man",
+      "personality": "An adventurous spirit, always ready for a new journey."
+    },
+    {
+      "id": "avatar-3",
+      "description": "Flinn",
+      "imageUrl": "https://images.unsplash.com/photo-1613206468203-fa00870edf79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbmltYXRlZCUyMGZveHxlbnwwfHx8fDE3NjEyMTQ1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated fox",
+      "personality": "A clever and quick-witted friend who enjoys a good laugh."
+    },
+    {
+      "id": "avatar-4",
+      "description": "Seraphina",
+      "imageUrl": "https://images.unsplash.com/photo-1695303852083-f2dd35b483b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhbmltYXRlZCUyMGNhdHxlbnwwfHx8fDE3NjEyMTQ1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated cat",
+      "personality": "A curious and independent thinker with a playful side."
+    },
+    {
+      "id": "avatar-5",
+      "description": "Leo",
+      "imageUrl": "https://images.unsplash.com/photo-1617289755070-3590b660a06e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhbmltYXRlZCUyMHBlcnNvbnxlbnwwfHx8fDE3NjEyMTQ1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated person",
+      "personality": "A friendly and outgoing leader who inspires others."
+    },
+    {
+      "id": "avatar-6",
+      "description": "Orion",
+      "imageUrl": "https://images.unsplash.com/photo-1717864477200-d4d1f112c792?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhbmltYXRlZCUyMG93bHxlbnwwfHx8fDE3NjEyMTQ1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "animated owl",
+      "personality": "A wise and thoughtful observer who loves reading."
+    }
+  ]
+}

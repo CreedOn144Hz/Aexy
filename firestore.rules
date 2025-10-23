@@ -1,0 +1,221 @@
+/**
+ * @fileoverview Firestore Security Rules for Aexy Tutor Application
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for user-specific data
+ * and provides public read access to learning scenarios with tier-based access control.
+ *
+ * Data Structure:
+ * - Users: /users/{userId} - Stores user profiles.
+ * - Daily Usage: /users/{userId}/dailyUsage/{dailyUsageId} - Tracks daily conversation usage.
+ * - Subscriptions: /users/{userId}/subscriptions/{subscriptionId} - Manages user subscriptions.
+ * - Conversations: /users/{userId}/conversations/{conversationId} - Stores conversation data.
+ * - Messages: /users/{userId}/conversations/{conversationId}/messages/{messageId} - Stores messages within conversations.
+ * - Scenarios: /scenarios/{scenarioId} - Stores learning scenarios.
+ * - Logins: /logins/{loginId} - Stores user login information.
+ *
+ * Key Security Decisions:
+ * - User-specific data (daily usage, subscriptions, conversations, messages) is strictly controlled by user ownership.
+ * - Scenarios are publicly readable, but writes are disallowed (in this initial version).
+ * - Listing of user documents is disallowed to prevent information leakage.
+ *
+ * Authorization Independence:
+ * - Path-based ownership is enforced for user-specific data, where the path directly reflects the user's ID.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Enforces user-ownership for user profiles.
+     * @path /users/{userId}
+     * @allow (create) User with ID 'user123' can create their profile.
+     * @deny (create) User with ID 'user456' cannot create a profile for 'user123'.
+     * @allow (get) User with ID 'user123' can read their profile.
+     * @deny (get) User with ID 'user456' cannot read the profile of 'user123'.
+     * @allow (update) User with ID 'user123' can update their profile.
+     * @deny (update) User with ID 'user456' cannot update the profile of 'user123'.
+     * @allow (delete) User with ID 'user123' can delete their profile.
+     * @deny (delete) User with ID 'user456' cannot delete the profile of 'user123'.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces user-ownership for daily usage records.
+     * @path /users/{userId}/dailyUsage/{dailyUsageId}
+     * @allow (create) User with ID 'user123' can create a daily usage record under their profile.
+     * @deny (create) User with ID 'user456' cannot create a daily usage record for 'user123'.
+     * @allow (get) User with ID 'user123' can read their daily usage record.
+     * @deny (get) User with ID 'user456' cannot read the daily usage record of 'user123'.
+     * @allow (update) User with ID 'user123' can update their daily usage record.
+     * @deny (update) User with ID 'user456' cannot update the daily usage record of 'user123'.
+     * @allow (delete) User with ID 'user123' can delete their daily usage record.
+     * @deny (delete) User with ID 'user456' cannot delete the daily usage record of 'user123'.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/dailyUsage/{dailyUsageId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces user-ownership for subscription records.
+     * @path /users/{userId}/subscriptions/{subscriptionId}
+     * @allow (create) User with ID 'user123' can create a subscription record under their profile.
+     * @deny (create) User with ID 'user456' cannot create a subscription record for 'user123'.
+     * @allow (get) User with ID 'user123' can read their subscription record.
+     * @deny (get) User with ID 'user456' cannot read the subscription record of 'user123'.
+     * @allow (update) User with ID 'user123' can update their subscription record.
+     * @deny (update) User with ID 'user456' cannot update the subscription record of 'user123'.
+     * @allow (delete) User with ID 'user123' can delete their subscription record.
+     * @deny (delete) User with ID 'user456' cannot delete the subscription record of 'user123'.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/subscriptions/{subscriptionId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces user-ownership for conversation records.
+     * @path /users/{userId}/conversations/{conversationId}
+     * @allow (create) User with ID 'user123' can create a conversation record under their profile.
+     * @deny (create) User with ID 'user456' cannot create a conversation record for 'user123'.
+     * @allow (get) User with ID 'user123' can read their conversation record.
+     * @deny (get) User with ID 'user456' cannot read the conversation record of 'user123'.
+     * @allow (update) User with ID 'user123' can update their conversation record.
+     * @deny (update) User with ID 'user456' cannot update the conversation record of 'user123'.
+     * @allow (delete) User with ID 'user123' can delete their conversation record.
+     * @deny (delete) User with ID 'user456' cannot delete the conversation record of 'user123'.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/conversations/{conversationId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces user-ownership for message records within conversations.
+     * @path /users/{userId}/conversations/{conversationId}/messages/{messageId}
+     * @allow (create) User with ID 'user123' can create a message record within their conversation.
+     * @deny (create) User with ID 'user456' cannot create a message record for 'user123'.
+     * @allow (get) User with ID 'user123' can read their message record.
+     * @deny (get) User with ID 'user456' cannot read the message record of 'user123'.
+     * @allow (update) User with ID 'user123' can update their message record.
+     * @deny (update) User with ID 'user456' cannot update the message record of 'user123'.
+     * @allow (delete) User with ID 'user123' can delete their message record.
+     * @deny (delete) User with ID 'user456' cannot delete the message record of 'user123'.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/conversations/{conversationId}/messages/{messageId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Allows public read access to scenarios, but restricts writes.
+     * @path /scenarios/{scenarioId}
+     * @allow (get) Any user can read any scenario.
+     * @allow (list) Any user can list scenarios.
+     * @deny (create) No user can create scenarios.
+     * @deny (update) No user can update scenarios.
+     * @deny (delete) No user can delete scenarios.
+     * @principle Allows public read access but restricts writes.
+     */
+    match /scenarios/{scenarioId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Enforces user-ownership for login records.
+     * @path /logins/{loginId}
+     * @allow (create) User with ID 'user123' can create their login record.
+     * @deny (create) User with ID 'user456' cannot create a login record for 'user123'.
+     * @allow (get) User with ID 'user123' can read their login record.
+     * @deny (get) User with ID 'user456' cannot read the login record of 'user123'.
+     * @allow (update) User with ID 'user123' can update their login record.
+     * @deny (update) User with ID 'user456' cannot update the login record of 'user123'.
+     * @allow (delete) User with ID 'user123' can delete their login record.
+     * @deny (delete) User with ID 'user456' cannot delete the login record of 'user123'.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /logins/{loginId} {
+      function isOwner(loginId) {
+        return request.auth != null && request.auth.uid == loginId;
+      }
+
+       function isExistingOwner(loginId) {
+        return isOwner(loginId) && resource != null;
+      }
+
+      allow get: if isOwner(loginId);
+      allow list: if false;
+      allow create: if isOwner(loginId);
+      allow update: if isExistingOwner(loginId);
+      allow delete: if isExistingOwner(loginId);
+    }
+  }
+}

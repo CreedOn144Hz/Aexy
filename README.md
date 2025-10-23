@@ -1,0 +1,11 @@
+# Aexy Tutor
+
+This is a Next.js application for Aexy, an English learning app. It provides a platform for users to practice their English conversation skills with an AI tutor.
+
+## Features
+
+- **Daily Practice Dashboard:** View your daily progress, including streaks and conversation limits. Browse and select from various practice scenarios.
+- **AI Conversation UI:** Engage in real-time conversations with an AI tutor in a dynamic chat interface.
+- **Real-time Feedback:** Receive instant feedback on your grammar and pronunciation.
+- **Tiered System:** Access to scenarios is based on your subscription tier (Free, Standard, Premium).
+- **AI-Powered:** Conversations are powered by Google's Gemini API to provide natural and relevant responses.
