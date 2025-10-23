@@ -9,3 +9,10 @@ This is a Next.js application for Aexy, an English learning app. It provides a p
 - **Real-time Feedback:** Receive instant feedback on your grammar and pronunciation.
 - **Tiered System:** Access to scenarios is based on your subscription tier (Free, Standard, Premium).
 - **AI-Powered:** Conversations are powered by Google's Gemini API to provide natural and relevant responses.
+
+## Demo Video Link - 
+
+
+## Deployment Link 
+
+- **https://aexy-git-master-aarons-projects-2ab85399.vercel.app/?_vercel_share=dfdFPpKRoBX8wtPc43xpGcW4oZOfFoPc
