@@ -11,8 +11,8 @@ This is a Next.js application for Aexy, an English learning app. It provides a p
 - **AI-Powered:** Conversations are powered by Google's Gemini API to provide natural and relevant responses.
 
 ## Demo Video Link - 
-
+- https://drive.google.com/file/d/1aF2X47N07jQx9Lw07U1VjWap9tsgJVzh/view?usp=sharing
 
 ## Deployment Link 
 
-- **https://aexy-git-master-aarons-projects-2ab85399.vercel.app/?_vercel_share=dfdFPpKRoBX8wtPc43xpGcW4oZOfFoPc
+- https://aexy-git-master-aarons-projects-2ab85399.vercel.app/?_vercel_share=dfdFPpKRoBX8wtPc43xpGcW4oZOfFoPc
